@@ -6,6 +6,7 @@ include("../include/connection.php");
 // Fetch all student information from the database
 $query = "
     SELECT students.*, officers.position, organizations.organization_name
+
     FROM students
     LEFT JOIN officers ON student_id = student_id
     LEFT JOIN organizations ON organizations.organization_name = organizations.id
@@ -63,6 +64,7 @@ $orgResult = mysqli_query($connection, $orgQuery);
                                     <thead>
                                         <tr>
 
+                                            <th>Student ID</th>
                                             <th>Name</th>
                                             <th>Position</th>
                                             <th>Organization</th>
@@ -77,6 +79,7 @@ $orgResult = mysqli_query($connection, $orgQuery);
 
                                             $name = $row["firstname"]." ".$row["lastname"];
                                             echo "<tr>";
+                                            echo "<td>" . $row['student_id'] . "</td>";
                                             echo "<td>" . $name . "</td>";
                                             echo "<td>" . $row['position'] . "</td>";
                                             echo "<td>" . $row['organization_name'] . "</td>";

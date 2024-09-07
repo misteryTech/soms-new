@@ -4,9 +4,9 @@ session_start();
 include("../include/connection.php");
 
 
-$sql = "SELECT e.id, e.title, e.description, e.date, e.image_path, o.organization_name 
-        FROM events e 
-        INNER JOIN organizations o ON e.organization_id = o.id"; 
+$sql = "SELECT e.id, e.title, e.description, e.date, e.image_path, o.organization_name
+        FROM event_schedule e
+        INNER JOIN organizations o ON e.org_id = o.id";
 $result = $connection->query($sql);
 
 $events = [];
@@ -20,13 +20,13 @@ $connection->close();
 ?>
 
 <body id="page-top">
-    
+
     <div id="wrapper">
         <?php include("admin_sidebar.php"); ?>
 
-        
+
         <div id="content-wrapper" class="d-flex flex-column">
-            
+
             <div id="content">
                 <?php include("admin_topbar.php"); ?>
 
@@ -40,12 +40,11 @@ $connection->close();
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $event['title']; ?></h5>
                                     </div>
-                                    <button class="btn btn-success view-btn" data-toggle="modal" data-target="#eventModal" 
-                                            data-id="<?php echo $event['id']; ?>" data-title="<?php echo $event['title']; ?>" 
-                                            data-description="<?php echo $event['description']; ?>" 
-                                            data-date="<?php echo $event['date']; ?>" 
-                                            data-time="<?php echo $event['time']; ?>"
-                                            data-location="<?php echo $event['location']; ?>"
+                                    <button class="btn btn-success view-btn" data-toggle="modal" data-target="#eventModal"
+                                            data-id="<?php echo $event['id']; ?>" data-title="<?php echo $event['title']; ?>"
+                                            data-description="<?php echo $event['description']; ?>"
+                                            data-date="<?php echo $event['date']; ?>"
+
                                             data-image="<?php echo $event['image_path']; ?>"
                                             data-organizer="<?php echo $event['organization_name']; ?>">View</button>
                                 </div>
@@ -54,7 +53,7 @@ $connection->close();
                     </div>
                 </div>
 
-                
+
                 <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -93,15 +92,15 @@ $connection->close();
                 </div>
 
             </div>
-            
+
 
             <?php include("admin_footer.php"); ?>
         </div>
     </div>
-    
+
 
     <script>
-        
+
         document.addEventListener('DOMContentLoaded', function() {
             const viewButtons = document.querySelectorAll('.view-btn');
             viewButtons.forEach(button => {

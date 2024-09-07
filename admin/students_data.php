@@ -38,7 +38,7 @@ $result = mysqli_query($connection, $query);
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="studentTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="studentTables" width="100%" cellspacing="0">
                                     <?php if (isset($_SESSION['success'])): ?>
                                         <div class="alert alert-success">
                                             <?php
@@ -272,3 +272,18 @@ $result = mysqli_query($connection, $query);
     <?php
     include("admin_footer.php");
     ?>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#studentTables').DataTable({
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "lengthChange": true,
+                "info": true,
+                "order": [[2, 'asc']] // Default sorting by first column (Name)
+            });
+        });
+    </script>
+</body>

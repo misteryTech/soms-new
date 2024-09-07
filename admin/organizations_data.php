@@ -179,3 +179,18 @@ $result = mysqli_query($connection, $query);
     <?php
     include("admin_footer.php");
     ?>
+
+
+<script>
+
+    $(document).ready(function () {
+            $('#organizationTable').DataTable({
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "lengthChange": true,
+                "info": true,
+                "order": [[0, 'asc']] // Default sorting by first column (Name)
+            });
+        });
+</script>

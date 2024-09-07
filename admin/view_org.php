@@ -29,7 +29,7 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($connection, $query);
 
     // Fetch events associated with the organization including the image path
-    $eventsQuery = "SELECT id, title, description, date, image_path FROM events WHERE organization_id = '$organization_id'";
+    $eventsQuery = "SELECT id, title, description, date, image_path FROM event_schedule WHERE org_id = '$organization_id'";
     $eventsResult = mysqli_query($connection, $eventsQuery);
 } else {
     $_SESSION['error'] = "Invalid request.";
@@ -77,7 +77,7 @@ if (isset($_GET['id'])) {
                                     </div>
                                 <?php endif; ?>
 
-        
+
                                 <div class="text-center mb-3">
     <div class="row justify-content-end">
         <div class="col-auto">
@@ -93,7 +93,7 @@ if (isset($_GET['id'])) {
     </div>
 </div>
 
-                               
+
                                 <tr>
                                     <th>Organization Name</th>
                                     <td><?php echo $organization['organization_name']; ?></td>

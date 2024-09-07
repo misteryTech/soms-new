@@ -67,6 +67,7 @@
     <div id="collapseEvents" class="collapse" aria-labelledby="headingEvents" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="calendar.php">Calendar</a>
+            <a class="collapse-item" href="set_calendar_event.php">Set Calendar Event</a>
             <a class="collapse-item" href="event_gallery.php">Gallery</a>
             <a class="collapse-item" href="event_data.php">Memo</a>
 

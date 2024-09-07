@@ -39,7 +39,14 @@ include("../include/connection.php");
     ?>
 
 <form action="process/org_reg.php" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
+
+            <div class="form-group">
+            <label for="organizationLogo">Organization Logo (OPTIONAL)</label>
+            <input type="file" class="form-control-file" id="logo" name="logo">
+            </div>
+
+
+            <div class="form-group">
             <label for="organizationName">Organization Name</label>
             <input type="text" class="form-control" id="organization_name" name="organization_name" required>
         </div>
@@ -75,10 +82,13 @@ include("../include/connection.php");
             <label for="contactEmail">Contact Email</label>
             <input type="email" class="form-control" id="contact_email" name="contact_email" required>
         </div>
+
         <div class="form-group">
-            <label for="organizationLogo">Organization Logo</label>
-            <input type="file" class="form-control-file" id="logo" name="logo" required>
-        </div>
+            <label for="requirements">Organization Requirements</label>
+            <input type="file" class="form-control-file" id="requirements" name="requirements" required>
+            </div>
+
+
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </div>
