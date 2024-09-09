@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "soms_db";
+$dbname = "somsystem";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

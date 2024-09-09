@@ -15,14 +15,14 @@ $result = $connection->query($sql);
 
 
         <div id="content-wrapper" class="d-flex flex-column">
-            
+
             <div id="content">
                 <?php include("admin_topbar.php"); ?>
 
-                
+
                 <div class="container-fluid">
-                    <h2 class="mb-4">Events Management</h2>
-                    <table class="table table-bordered">
+                                     <h2 class="mb-4">Events Management</h2>
+                                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Title</th>
@@ -46,7 +46,7 @@ $result = $connection->query($sql);
                                 echo "</td>";
                                 echo "</tr>";
 
-                                
+
                                 echo "<div class='modal fade' id='editModal" . $row['id'] . "' tabindex='-1' role='dialog' aria-labelledby='editModalLabel' aria-hidden='true'>";
                                 echo "<div class='modal-dialog' role='document'>";
                                 echo "<div class='modal-content'>";
@@ -85,7 +85,7 @@ $result = $connection->query($sql);
                                 echo "</div>";
                                 echo "</div>";
 
-                                
+
                                 echo "<div class='modal fade' id='deleteModal" . $row['id'] . "' tabindex='-1' role='dialog' aria-labelledby='deleteModalLabel' aria-hidden='true'>";
                                 echo "<div class='modal-dialog' role='document'>";
                                 echo "<div class='modal-content'>";
@@ -111,21 +111,20 @@ $result = $connection->query($sql);
                             }
                             ?>
                         </tbody>
-                    </table>
-                </div>
-                </div>
-                <tfoot>
-                    <tr>
-                        <td colspan="4" style="text-align: center;">
-                            <a href="organization_registration.php" class="btn btn-primary">Add Event</a>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+                                     </table>
+                                 </div>
+                                 </div>
+                                 <tfoot>
+                                     <tr>
+                                         <td colspan="4" style="text-align: center;">
+                                             <a href="organization_registration.php" class="btn btn-primary">Add Event</a>
+                                         </td>
+                                     </tr>
+                                 </tfoot>
+
 
             </div>
-            
+
             <?php include("admin_footer.php"); ?>
         </div>
     </div>
-    

@@ -1,19 +1,13 @@
 <?php
 session_start();
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "soms_db";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Database connectionection parameters
+include("../../include/connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = mysqli_real_escape_string($conn, $_POST['title']);
-    $description = mysqli_real_escape_string($conn, $_POST['description']);
-    $date = mysqli_real_escape_string($conn, $_POST['date']); // Match this to the form's input name
-    $organization_id = mysqli_real_escape_string($conn, $_POST['organizer']); // Assuming this field exists in your form
+    $title = mysqli_real_escape_string($connection, $_POST['title']);
+    $description = mysqli_real_escape_string($connection, $_POST['description']);
+    $date = mysqli_real_escape_string($connection, $_POST['date']); // Match this to the form's input name
+    $organization_id = mysqli_real_escape_string($connection, $_POST['organizer']); // Assuming this field exists in your form
 
     // Handling file upload
     $target_dir = "uploads/"; // Absolute path to the target directory
@@ -63,13 +57,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
+            // Check connectionection
+            if ($connection->connectionect_error) {
+                die("Connectionection failed: " . $connection->connectionect_error);
             }
 
             $sql = "INSERT INTO event_schedule (title, description, date, image_path, org_id) VALUES (?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
+            $stmt = $connection->prepare($sql);
 
             if ($stmt) {
                 $stmt->bind_param("ssssi", $title, $description, $date, $target_file, $organization_id);
@@ -84,11 +78,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $stmt->close();
             } else {
-                $_SESSION['message'] = "Error preparing statement: " . $conn->error;
+                $_SESSION['message'] = "Error preparing statement: " . $connection->error;
                 $_SESSION['message_type'] = "alert-danger";
             }
 
-            $conn->close();
+            $connection->close();
         } else {
             $_SESSION['message'] = "Sorry, there was an error uploading your file.";
             $_SESSION['message_type'] = "alert-danger";
