@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
     ";
     $result = mysqli_query($connection, $query);
 
-    // Fetch events associated with the organization including the image path
+    // Fetch all events associated with the organization
     $eventsQuery = "SELECT id, title, description, date, image_path FROM event_schedule WHERE org_id = '$organization_id'";
     $eventsResult = mysqli_query($connection, $eventsQuery);
 } else {
@@ -38,15 +38,12 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php
-        include("admin_sidebar.php");
-        ?>
+        <?php include("admin_sidebar.php"); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -54,9 +51,7 @@ if (isset($_GET['id'])) {
             <!-- Main Content -->
             <div id="content">
 
-                <?php
-                include("admin_topbar.php");
-                ?>
+                <?php include("admin_topbar.php"); ?>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -77,23 +72,6 @@ if (isset($_GET['id'])) {
                                     </div>
                                 <?php endif; ?>
 
-
-                                <div class="text-center mb-3">
-    <div class="row justify-content-end">
-        <div class="col-auto">
-            <?php
-            $newPageUrl = "path/to/your/new/page.php"; // Change this to the URL of the new page
-            echo "<a href='$newPageUrl' target='_blank'>";
-            echo "<i class='fas fa-gavel'></i> Constitutions by Law";
-            echo "</a>";
-            ?>
-        </div>
-    </div>
-</div>
-    </div>
-</div>
-
-
                                 <tr>
                                     <th>Organization Name</th>
                                     <td><?php echo $organization['organization_name']; ?></td>
@@ -106,7 +84,6 @@ if (isset($_GET['id'])) {
                                     <th>Advisor Name</th>
                                     <td><?php echo $organization['advisor_name']; ?></td>
                                 </tr>
-
                             </table>
 
                             <hr>
@@ -114,22 +91,18 @@ if (isset($_GET['id'])) {
                             <h3>OFFICERS</h3>
 
                             <table class="table table-bordered" id="studentTable" width="100%" cellspacing="0">
-
                                 <thead>
                                     <tr>
-                                    <th class="text-center bg-light">POSITION</th>
-                                    <th class="text-center bg-light">NAME</th>
+                                        <th class="text-center bg-light">POSITION</th>
+                                        <th class="text-center bg-light">NAME</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     <?php
-                                    // Loop through each row of the result set
                                     while ($row = mysqli_fetch_assoc($result)) {
-
                                         $name = $row["firstname"]." ".$row["lastname"];
                                         echo "<tr>";
-                                        echo "<td class='text-center'>" . $row['role'] . "</td>";
+                                        echo "<td class='text-center'>" . $row['position'] . "</td>";
                                         echo "<td class='text-center'>" . $name . "</td>";
                                         echo "</tr>";
                                     }
@@ -137,13 +110,9 @@ if (isset($_GET['id'])) {
                                 </tbody>
                             </table>
 
-                            <br>
-
                             <hr>
 
                             <h3>ACTIVITIES</h3>
-
-
                             <?php
                             if (mysqli_num_rows($eventsResult) > 0) {
                                 echo "<div class='row'>";
@@ -155,6 +124,10 @@ if (isset($_GET['id'])) {
                                     echo "<h5 class='card-title'>{$event['title']}</h5>";
                                     echo "<p class='card-text'>{$event['description']}</p>";
                                     echo "<p class='card-text'>{$event['date']}</p>";
+                                    echo "<a href='view_photos.php?event_id={$event['id']}' class='btn btn-primary'>View Photos</a>";
+                                    echo "<a href='upload_photos.php?event_id={$event['id']}' class='btn btn-success ml-2'>Upload Photos</a>";
+
+                                    echo "<a class='btn btn-secondary mt-2' href='event_gallery_file_manage.php?id={$event['id']}'>File Manager</a>";
                                     echo "</div>";
                                     echo "</div>";
                                     echo "</div>";
@@ -164,21 +137,17 @@ if (isset($_GET['id'])) {
                                 echo "<p>No events found for this organization.</p>";
                             }
                             ?>
-
                             <a href="organizations_data.php" class="btn btn-secondary">Back</a>
                         </div>
-
                     </div>
                 </div>
                 <!-- End of Main Content -->
             </div>
             <!-- End of Content Wrapper -->
-
         </div>
-
     </div>
     <!-- End of Page Wrapper -->
 
-    <?php
-    include("admin_footer.php");
-    ?>
+    <?php include("admin_footer.php"); ?>
+</body>
+</html>

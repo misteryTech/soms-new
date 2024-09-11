@@ -43,29 +43,32 @@ $connection->close();
                 <?php include("admin_topbar.php"); ?>
 
                 <div class="container mt-5">
-                    <h2 class="mb-4">Events Gallery</h2>
-                    <div class="row">
-                        <?php foreach ($events as $event): ?>
-                            <div class="col-md-4 mb-4">
-                                <div class="card">
-                                    <img src="process/<?php echo $event['image_path']; ?>" class="card-img-top" alt="<?php echo $event['title']; ?>">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $event['title']; ?></h5>
-                                    </div>
-                                    <button class="btn btn-success view-btn" data-toggle="modal" data-target="#eventModal"
-                                            data-id="<?php echo $event['id']; ?>" data-title="<?php echo $event['title']; ?>"
-                                            data-description="<?php echo $event['description']; ?>"
-                                            data-date="<?php echo $event['date']; ?>"
-                                            data-image="<?php echo $event['image_path']; ?>"
-                                            data-organizer="<?php echo $event['organization_name']; ?>">View</button>
-                                    <!-- New Upload Button -->
-                                    <button class="btn btn-primary upload-btn mt-2" data-toggle="modal" data-target="#uploadModal"
-                                            data-id="<?php echo $event['id']; ?>">Upload Photo</button>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+    <h2 class="mb-4">Events Gallery</h2>
+    <div class="row">
+        <?php foreach ($events as $event): ?>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="process/<?php echo htmlspecialchars($event['image_path']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($event['title']); ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo htmlspecialchars($event['title']); ?></h5>
                     </div>
+                    <button class="btn btn-success view-btn" data-toggle="modal" data-target="#eventModal"
+                            data-id="<?php echo htmlspecialchars($event['id']); ?>"
+                            data-title="<?php echo htmlspecialchars($event['title']); ?>"
+                            data-description="<?php echo htmlspecialchars($event['description']); ?>"
+                            data-date="<?php echo htmlspecialchars($event['date']); ?>"
+                            data-image="<?php echo htmlspecialchars($event['image_path']); ?>"
+                            data-organizer="<?php echo htmlspecialchars($event['organization_name']); ?>">View</button>
+                    <!-- New Upload Button -->
+                    <button class="btn btn-primary upload-btn mt-2" data-toggle="modal" data-target="#uploadModal" data-id="<?php echo htmlspecialchars($event['id']); ?>">Upload Photo</button>
+                    <!-- Fixed File Manager Link -->
+                    <a class="btn btn-secondary mt-2" href="event_gallery_file_manage.php?id=<?php echo htmlspecialchars($event['id']); ?>">File Manager</a>
                 </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
 
         <!-- Event Details Modal -->
 <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
