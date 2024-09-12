@@ -84,6 +84,16 @@ if (isset($_GET['id'])) {
                                     <th>Advisor Name</th>
                                     <td><?php echo $organization['advisor_name']; ?></td>
                                 </tr>
+                                <tr>
+                                    <th>Submitted Requirements</th>
+                                    <td>
+                                        <?php if (!empty($organization['requirements'])): ?>
+                                            <a href="uploads/<?php echo $organization['requirements']; ?>" target="_blank">View Requirements</a>
+                                        <?php else: ?>
+                                            <p>No requirements submitted.</p>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
                             </table>
 
                             <hr>
@@ -126,7 +136,6 @@ if (isset($_GET['id'])) {
                                     echo "<p class='card-text'>{$event['date']}</p>";
                                     echo "<a href='view_photos.php?event_id={$event['id']}' class='btn btn-primary'>View Photos</a>";
                                     echo "<a href='upload_photos.php?event_id={$event['id']}' class='btn btn-success ml-2'>Upload Photos</a>";
-
                                     echo "<a class='btn btn-secondary mt-2' href='event_gallery_file_manage.php?id={$event['id']}'>File Manager</a>";
                                     echo "</div>";
                                     echo "</div>";

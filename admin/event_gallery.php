@@ -59,8 +59,7 @@ $connection->close();
                             data-date="<?php echo htmlspecialchars($event['date']); ?>"
                             data-image="<?php echo htmlspecialchars($event['image_path']); ?>"
                             data-organizer="<?php echo htmlspecialchars($event['organization_name']); ?>">View</button>
-                    <!-- New Upload Button -->
-                    <button class="btn btn-primary upload-btn mt-2" data-toggle="modal" data-target="#uploadModal" data-id="<?php echo htmlspecialchars($event['id']); ?>">Upload Photo</button>
+
                     <!-- Fixed File Manager Link -->
                     <a class="btn btn-secondary mt-2" href="event_gallery_file_manage.php?id=<?php echo htmlspecialchars($event['id']); ?>">File Manager</a>
                 </div>
@@ -93,11 +92,7 @@ $connection->close();
                 <label for="">Organizer:</label>
                 <p id="eventOrganizer"></p>
 
-                <!-- Event Photos -->
-                <label for="" class="mt-4">Event Photos:</label>
-                <div id="eventPhotosGallery" class="d-flex flex-wrap justify-content-start">
-                    <!-- Event photos will be appended here by JavaScript -->
-                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
