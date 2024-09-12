@@ -1,6 +1,5 @@
 <?php
 include("admin_header.php");
-session_start();
 include("../include/connection.php");
 
 // Fetch all student information from the database
