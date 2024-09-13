@@ -183,7 +183,7 @@ include("../include/connection.php");
 
                             <div class="col-md-4">
                                 <label for="municipality">Municipality</label>
-                                <select class="form-control" id="municipality" name="municipality" required>
+                                <select class="form-control" id="municipality" name="municipality" required onchange="fetchBarangays(this.value)">
                                     <option value="">Select Municipality</option>
                                 </select>
                             </div>
@@ -191,7 +191,9 @@ include("../include/connection.php");
 
                             <div class="col-md-4">
                                 <label for="barangay">Barangay</label>
-                                <input type="text" class="form-control" id="barangay" name="barangay" required>
+                                <select class="form-control" id="barangay" name="barangay" required>
+                                    <option value="">Select Barangay</option>
+                                </select>
                             </div>
 
 
@@ -261,6 +263,30 @@ include("../include/connection.php");
         }
     });
 }
+
+
+function fetchBarangays(municipality) {
+            $.ajax({
+                url: 'ajax/fetch_barangay.php',
+                type: 'POST',
+                data: { municipality: municipality },
+                dataType: 'json',
+                success: function(response) {
+                    var barangayDropdown = document.getElementById('barangay');
+                    barangayDropdown.innerHTML = '<option value="">Select Barangay</option>';
+                    response.forEach(function(barangay) {
+                        var option = document.createElement('option');
+                        option.value = barangay.barangay;
+                        option.textContent = barangay.barangay;
+                        barangayDropdown.appendChild(option);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("An error occurred: " + error);
+                }
+            });
+        }
+
 
 
 

@@ -57,7 +57,7 @@ include("../include/connection.php");
 
                                 <div class="col-md-4">
                                     <label for="municipality">Municipality</label>
-                                    <input type="text" class="form-control" id="municipality" name="municipality" onkeyup="checkMunicipality()" required>
+                                    <input type="text" class="form-control" id="municipality" name="municipality"  required>
                                     <span id="checkavailability" style="display: block; margin-top: 5px;"></span>
                                 </div>
 
@@ -81,34 +81,5 @@ include("../include/connection.php");
     include("admin_footer.php");
     ?>
 
-    <script>
-        function checkMunicipality() {
-            var municipality = document.getElementById('municipality').value;
 
-            $.ajax({
-                url: 'ajax/check_municipality.php',
-                type: 'POST',
-                data: { municipality: municipality },
-                success: function(response) {
-                    var availabilitySpan = document.getElementById('checkavailability');
-
-                    if (response === 'exists') {
-                        availabilitySpan.textContent = 'This municipality already exists.';
-                        availabilitySpan.style.color = 'red';
-                        registerButton.disabled = true;
-                    } else {
-                        availabilitySpan.textContent = 'This municipality is available.';
-                        availabilitySpan.style.color = 'green';
-                        registerButton.disabled = false;
-
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('An error occurred: ' + error);
-                }
-            });
-        }
-
-        document.getElementById('municipality').addEventListener('blur', checkMunicipality);
-    </script>
 </body>
