@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $position = mysqli_real_escape_string($connection, $_POST['position']);
     $personal_statement = mysqli_real_escape_string($connection, $_POST['personal_statement']);
 
-   
+
     $insertQuery = "INSERT INTO officers (student_name, officer_email, officer_phone, course, year, organization_name, position, personal_statement)
                     VALUES ('$student_name', '$officer_email', '$officer_phone', '$course', '$year', '$organization_name', '$position', '$personal_statement')";
 
