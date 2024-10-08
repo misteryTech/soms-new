@@ -4,11 +4,13 @@ include("../include/connection.php");
 
 // Fetch all student information from the database
 $query = "
-    SELECT students.*, officers.position, organizations.organization_name
+    SELECT S.*, O.position, org.organization_name
 
-    FROM students
-    LEFT JOIN officers ON student_id = student_id
-    LEFT JOIN organizations ON organizations.organization_name = organizations.id
+    FROM students AS S
+    
+    INNER JOIN officers AS O ON O.student_name = S.id
+    LEFT JOIN organizations AS org ON org.id = o.organization_name
+
 ";
 $result = mysqli_query($connection, $query);
 
@@ -81,7 +83,7 @@ $orgResult = mysqli_query($connection, $orgQuery);
                                             echo "<td>" . $row['student_id'] . "</td>";
                                             echo "<td>" . $name . "</td>";
                                             echo "<td>" . $row['position'] . "</td>";
-                                            echo "<td>" . $row['organization_name'] . "</td>";
+                                            echo "<td>" . $row['organization_name'] ."</td>";
                                             echo "<td>";
                                             // View button
                                             echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#viewModal" . $row['id'] . "'>View</button>&nbsp;";
@@ -129,11 +131,11 @@ $orgResult = mysqli_query($connection, $orgQuery);
                                             echo "<input type='hidden' name='id' value='" . $row['id'] . "'>";
                                             echo "<div class='form-group'>";
                                             echo "<label for='name'>Name</label>";
-                                            echo "<input type='text' class='form-control' id='name' name='name' value='" . $row['first_name'] . "' disabled>";
+                                            echo "<input type='text' class='form-control' id='name' name='name' value='" . $row['firstname'] . "' disabled>";
                                             echo "</div>";
                                             echo "<div class='form-group'>";
                                             echo "<label for='last_name'>Last Name</label>";
-                                            echo "<input type='text' class='form-control' id='last_name' name='last_name' value='" . $row['last_name'] . "' disabled>";
+                                            echo "<input type='text' class='form-control' id='last_name' name='last_name' value='" . $row['lastname'] . "' disabled>";
                                             echo "</div>";
                                             echo "<div class='form-group'>";
                                             echo "<label for='role'>Role in Organization</label>";
@@ -141,7 +143,7 @@ $orgResult = mysqli_query($connection, $orgQuery);
                                             echo "<option value='' disabled>Select a role</option>";
                                             $roles = ["President", "Vice President", "Secretary", "Treasurer", "Member"];
                                             foreach ($roles as $role) {
-                                                $selected = ($role == $row['role']) ? 'selected' : '';
+                                                $selected = ($role == $row['position']) ? 'selected' : '';
                                                 echo "<option value='$role' $selected>$role</option>";
                                             }
                                             echo "</select>";

@@ -3,7 +3,8 @@ session_start();
 include("../../include/connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $student_id = mysqli_real_escape_string($connection, $_POST['student_id']);
+    $id = mysqli_real_escape_string($connection, $_POST['id']);
+    $edit_id = mysqli_real_escape_string($connection, $_POST['edit_id']);
     $username = mysqli_real_escape_string($connection, $_POST['edit_username']); 
     $lastname = mysqli_real_escape_string($connection, $_POST['edit_lastname']);
     $firstname = mysqli_real_escape_string($connection, $_POST['edit_firstname']);   
@@ -23,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $query = "UPDATE students SET 
     username='$username',
+    student_id='$edit_id',
     password='$password',
     lastname='$lastname', 
     firstname='$firstname',
@@ -39,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     barangay='$barangay', 
     municipality='$municipality', 
     province='$province' 
-    WHERE id='$student_id'";
+    WHERE id='$id'";
 
     if (mysqli_query($connection, $query)) {
         $_SESSION['success'] = "Student information updated successfully!";

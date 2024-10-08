@@ -60,6 +60,7 @@ $result = mysqli_query($connection, $query);
                                             <th>Organization Name</th>
                                             <th>Department</th>
                                             <th>Advisor Name</th>
+                                            <th>Organization Registered</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -72,6 +73,7 @@ $result = mysqli_query($connection, $query);
                                             echo "<td>" . $row['organization_name'] . "</td>";
                                             echo "<td>" . $row['department'] . "</td>";
                                             echo "<td>" . $row['advisor_name'] . "</td>";
+                                            echo "<td>" . $row['created_at'] . "</td>";
                                             echo "<td>";
                                             echo "<a href='view_org.php?id=" . $row['id'] . "'><i class='fas fa-eye text-success'></i></a> ";
                                             echo "<a href='#' data-toggle='modal' data-target='#editModal" . $row['id'] . "'><i class='fas fa-edit text-primary'></i></a> ";

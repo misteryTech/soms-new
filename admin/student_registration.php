@@ -121,6 +121,15 @@ include("../include/connection.php");
                                     <option value="IV">IV</option>
                                     </select>
                                 </div>
+
+                                <?php
+                                    $mysqli_query_department = "SELECT * FROM DEPARTMENT";
+                                    $mysqli_result_dept = mysqli_query($connection, $mysqli_query_department);
+
+                                    
+
+
+                                ?>
                                 <div class="col-md-3">
                                     <label for="section">Section</label>
                                     <select class="form-control" id="section" name="section" required>
@@ -169,31 +178,58 @@ include("../include/connection.php");
                             <div class="form-group">
                             <h5 style="text-align: center;">Address</h5>
                         <div class="form-row">
+                        
 
+                        <div class="col-md-12">
+                        <label for="region">Select Region:</label>
+                                 <select class="form-control" name="region" id="region" onchange="loadProvinces(this.value)">
+                                     <option value="">Select Region</option>
+                                     <option value="NCR">National Capital Region (NCR)</option>
+                                     <option value="CAR">Cordillera Administrative Region (CAR)</option>
+                                     <option value="Region I">Ilocos Region</option>
+                                     <option value="Region II">Cagayan Valley</option>
+                                     <option value="Region III">Central Luzon</option>
+                                     <option value="Region IV-A">CALABARZON</option>
+                                     <option value="Region IV-B">MIMAROPA</option>
+                                     <option value="Region V">Bicol Region</option>
+                                     <option value="Region VI">Western Visayas</option>
+                                     <option value="Region VII">Central Visayas</option>
+                                     <option value="Region VIII">Eastern Visayas</option>
+                                     <option value="Region IX">Zamboanga Peninsula</option>
+                                     <option value="Region X">Northern Mindanao</option>
+                                     <option value="Region XI">Davao Region</option>
+                                     <option value="Region XII">SOCCSKSARGEN</option>
+                                     <option value="Region XIII">Caraga</option>
+                                     <option value="BARMM">Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)</option>
+                                 </select>
+
+
+                        </div>
                         <div class="col-md-4">
                                     <label for="province">Province</label>
-                                    <select class="form-control" id="province" name="province" required onchange="updateAddressinfo()">
+                                    <select class="form-control" id="province" name="province" required onchange="loadCities(this.value)">
                                         <option value="">Select Province</option>
-                                        <option value="1">Abra</option>
-                                        <option value="2">Apayao</option>
-                                        <option value="3">Pangasinan</option>
+                             
                                     </select>
                         </div>
 
 
                             <div class="col-md-4">
                                 <label for="municipality">Municipality</label>
-                                <select class="form-control" id="municipality" name="municipality" required onchange="fetchBarangays(this.value)">
+                                <select class="form-control" id="city" name="city" required onchange="loadMunicipalities(this.value)">
                                     <option value="">Select Municipality</option>
                                 </select>
                             </div>
 
 
                             <div class="col-md-4">
-                                <label for="barangay">Barangay</label>
-                                <select class="form-control" id="barangay" name="barangay" required>
+                                <!-- Municipality Dropdown -->
+                                <label for="municipality">Select Barangay:</label>
+                                <select class="form-control" name="municipality" id="municipality">
                                     <option value="">Select Barangay</option>
+                                    <!-- Options populated by JavaScript -->
                                 </select>
+
                             </div>
 
 
@@ -234,7 +270,7 @@ include("../include/connection.php");
     include("admin_footer.php");
     ?>
     </div>
-
+    <script src="address_js/dropdown.js"></script>
 
     <script>
                   function updateAddressinfo() {
