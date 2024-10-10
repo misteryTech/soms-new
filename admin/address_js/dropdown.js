@@ -753,19 +753,20 @@ function loadCities(province) {
     }
 }
 
+
 function loadMunicipalities(city) {
     const regionSelect = document.getElementById('region');
     const provinceSelect = document.getElementById('province');
-    const barangaySelect = document.getElementById('barangay');
+    const municipalitySelect = document.getElementById('barangay');
     const selectedRegion = regionSelect.value;
     const selectedProvince = provinceSelect.value;
     
-    barangaySelect.innerHTML = '<option value="">Select barangay</option>';
+    municipalitySelect.innerHTML = '<option value="">Select barangay</option>';
     
     if (data[selectedRegion][selectedProvince][city]) {
         const barangays = data[selectedRegion][selectedProvince][city];
         for (const barangay of barangays) {
-            barangaySelect.innerHTML += `<option value="${barangay}">${barangay}</option>`;
+            municipalitySelect.innerHTML += `<option value="${barangay}">${barangay}</option>`;
         }
     }
 }

@@ -34,7 +34,7 @@
     </a>
     <div id="collapseAdmin" class="collapse" aria-labelledby="headingEvents" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="address_registration.php">Address</a>
+          
             <a class="collapse-item" href="course_registration.php">Course</a>
         </div>
 

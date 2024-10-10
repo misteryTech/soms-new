@@ -757,7 +757,7 @@ function loadCities(province) {
 function loadMunicipalities(city) {
     const regionSelect = document.getElementById('region');
     const provinceSelect = document.getElementById('province');
-    const municipalitySelect = document.getElementById('municipality');
+    const municipalitySelect = document.getElementById('barangay');
     const selectedRegion = regionSelect.value;
     const selectedProvince = provinceSelect.value;
     

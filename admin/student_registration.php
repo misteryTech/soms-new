@@ -69,10 +69,7 @@ include("../include/connection.php");
                                 <div class="form-group">
                                 <h5 style="text-align: center;">Personal Information</h5>
                                 <div class="form-row">
-                                <div class="col-md-4">
-                            <label for="lastname">Lastname</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname"  required>
-                        </div>
+                        
                             <div class="col-md-4">
                                 <label for="firstname">Firstname</label>
                                 <input type="text" class="form-control" id="firstname" name="firstname" required>
@@ -80,6 +77,10 @@ include("../include/connection.php");
                         <div class="col-md-4">
                             <label for="middlename">Middlename</label>
                             <input type="text" class="form-control" id="middlename" name="middlename" required>
+                        </div>
+                        <div class="col-md-4">
+                        <label for="lastname">Lastname</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname"  required>
                         </div>
                         </div>
                         <div class="form-row">
@@ -225,7 +226,7 @@ include("../include/connection.php");
                             <div class="col-md-4">
                                 <!-- Municipality Dropdown -->
                                 <label for="municipality">Select Barangay:</label>
-                                <select class="form-control" name="municipality" id="municipality">
+                                <select class="form-control" name="barangay" id="barangay">
                                     <option value="">Select Barangay</option>
                                     <!-- Options populated by JavaScript -->
                                 </select>

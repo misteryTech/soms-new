@@ -4,7 +4,7 @@ session_start();
 include("../include/connection.php");
 
 // Fetch event data from the database
-$sql = "SELECT id, title, description, date, image_path FROM events";
+$sql = "SELECT id, title, description, date, image_path FROM event_schedule";
 $result = $connection->query($sql);
 ?>
 
@@ -72,13 +72,7 @@ $result = $connection->query($sql);
                                 echo "<input type='date' class='form-control' id='editDate' name='edit_date' value='" . $row['date'] . "' required>";
                                 echo "</div>";
                                 echo "<div class='form-group'>";
-                                echo "<label for='editLocation'>Time</label>";
-                                echo "<input type='time' class='form-control' id='editTime' name='edit_time' value='" . $row['time'] . "' required>";
-                                echo "</div>";
-                                echo "<div class='form-group'>";
-                                echo "<label for='editLocation'>Location</label>";
-                                echo "<input type='text' class='form-control' id='editLocation' name='edit_location' value='" . $row['location'] . "' required>";
-                                echo "</div>";
+                      
                                 echo "<div class='form-group'>";
                                 echo "<label for='editImage'>Image</label>";
                                 echo "<input type='file' class='form-control' id='editImage' name='edit_image'>";
