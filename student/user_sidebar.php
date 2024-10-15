@@ -26,7 +26,7 @@
     Management
 </div>
 
-<li class="nav-item">
+<!-- <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin"
         aria-expanded="true" aria-controls="collapseAdmin">
         <i class="fas fa-fw fa-user"></i>
@@ -72,7 +72,7 @@
             <a class="collapse-item" href="event_data.php">Memo</a>
 
     </div>
-</li>
+</li> -->
 
 <hr class="sidebar-divider my-0">
 

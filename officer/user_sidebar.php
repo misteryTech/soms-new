@@ -13,7 +13,7 @@
 
 
 <li class="nav-item active">
-    <a class="nav-link" href="admin_dashboard.php">
+    <a class="nav-link" href="officer_dashboard.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
@@ -25,7 +25,7 @@
 <div class="sidebar-heading">
     Management
 </div>
-
+<!-- 
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin"
         aria-expanded="true" aria-controls="collapseAdmin">
@@ -39,13 +39,13 @@
         </div>
 
         </div>
-</li>
-
+</li> -->
+<!-- 
 <li class="nav-item">
 <a class="nav-link" href="students_data.php">
         <i class="fas fa-fw fa-users"></i>
         <span>Students</span></a>
-</li>
+</li> -->
 <li class="nav-item">
     <a class="nav-link" href="organizations_data.php">
         <i class="fas fa-fw fa-chart-area"></i>

@@ -14,8 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $row = mysqli_fetch_assoc($result);
         $stored_password = $row['password'];
         $role = $row['role']; // Assuming there is a role column in the students table
+        $position = $row['position']; // Corrected the typo
 
-        // Verify the password
+        // Verify the password (consider using password_verify() if passwords are hashed)
         if ($password === $stored_password) {
             // Password is correct, set the session variables
             $_SESSION['username'] = $row['username'];
@@ -25,8 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Redirect based on role
             if ($role === 'Admin') {
                 header("Location: admin/admin_dashboard.php");
+            } elseif ($role === 'Student' || $position === 'President') {
+                header("Location: officer/officer_dashboard.php");
             } else {
-                header("Location: student/student_dashboard.php");
+                header("Location: student/user_dashboard.php");
             }
             exit();
         } else {
