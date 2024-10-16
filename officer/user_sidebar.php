@@ -52,12 +52,7 @@
         <span>Organizations</span>
     </a>
 </li>
-<li class="nav-item">
-    <a class="nav-link" href="officers_data.php">
-        <i class="fas fa-fw fa-id-card"></i>
-        <span>Officers</span>
-    </a>
-</li>
+
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvents"
         aria-expanded="true" aria-controls="collapseEvents">

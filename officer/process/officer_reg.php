@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("../../include/connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -22,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['error'] = "Error registering officer: " . mysqli_error($connection);
     }
 
-    header("Location: ../officers_data.php");
+    echo "<script>alert('succefully registered')</script>";
+    echo "<script>windows.location.href='view_org.php'</script>";
     exit();
 }
 
