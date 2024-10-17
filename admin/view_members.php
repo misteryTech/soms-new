@@ -22,22 +22,35 @@ include('../include/connection.php'); // Include the database connection here
 
                     <div class="row justify-content-center mt-4">
                         <?php
-                        // Get department_id from URL
-                        $department_id = isset($_GET['department_id']) ? intval($_GET['department_id']) : 0;
+                        // Get student_id from URL
+                        $org_id = isset($_GET['org_id']) ? intval($_GET['org_id']) : 0;
 
-                        if ($department_id > 0) {
-                            // Fetch department name
-                            $deptQuery = "SELECT department_name FROM department WHERE id = $department_id";
+                        if ($org_id > 0) {
+                            // Fetch student name
+                            $deptQuery = "SELECT O.*,ORG.*
+                            
+                            FROM officers AS O
+                            INNER JOIN organizations AS ORG ON ORG.id = O.organization_name
+                            
+                            WHERE O.organization_name = $org_id";
+                            
                             $deptResult = $connection->query($deptQuery);
-                            $department_name = ($deptResult->num_rows > 0) ? $deptResult->fetch_assoc()['department_name'] : 'Unknown Department';
+                            $student_name = ($deptResult->num_rows > 0) ? $deptResult->fetch_assoc()['organization_name'] : 'Unknown student';
+                       
 
                             echo '<div class="col-md-10 mb-4 text-center">';
-                            echo '<h2 class="text-primary mb-4">' . htmlspecialchars($department_name) . '</h2>';
+                            echo '<h2 class="text-primary mb-4">' . htmlspecialchars($student_name) . '</h2>';
+                 
                             echo '</div>';
                             echo '<div class="w-100"></div>';
 
-                            // Fetch registered organizations for the selected department
-                            $query = "SELECT id,organization_name FROM organizations WHERE department = '$department_name'";
+                            // Fetch registered organizations for the selected student
+                            $query = "SELECT O.*,S.*
+
+                             FROM officers  O
+                            INNER JOIN students AS S ON S.id=O.student_name
+                             
+                             WHERE organization_name = '$org_id'";
                             $result = $connection->query($query);
 
                             if ($result->num_rows > 0) {
@@ -46,19 +59,22 @@ include('../include/connection.php'); // Include the database connection here
                                     <div class="col-md-10 mb-4">
                                         <div class="card border-left-primary shadow h-100 card-custom">
                                             <div class="card-body text-center">
-                                             <a href="view_members.php?org_id=' . $row['id'] . '" class="text-decoration-none text-primary">
-                                                    ' . htmlspecialchars($row['organization_name']) . '
+                                                <h1> <a href="view_members.php?student_id=' . $row['id'] . '" class="text-decoration-none text-primary">
+                                                    ' . htmlspecialchars($row['firstname'].' '. $row['lastname']) . '
                                                 </a>
+                                                </h1>
+                                                   <h5>'.$row['position'].'</h5>
+                                                <h4> 
                                             </div>
                                         </div>
                                     </div>
                                     <div class="w-100"></div>';
                                 }
                             } else {
-                                echo '<div class="col-md-10 mb-4 text-center">No organizations found for this department.</div>';
+                                echo '<div class="col-md-10 mb-4 text-center">No organizations found for this student.</div>';
                             }
                         } else {
-                            echo '<div class="col-md-10 mb-4 text-center">Invalid department selected.</div>';
+                            echo '<div class="col-md-10 mb-4 text-center">Invalid student selected.</div>';
                         }
                         ?>
                     </div>
