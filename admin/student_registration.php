@@ -52,10 +52,15 @@ include("../include/connection.php");
                         <div class="form-group">
                            <h5 style="text-align: center;">Account</h5>
                             <div class="form-row">
-                                <div class="col-md-4">
-                                    <label for="studentId">Student ID</label>
-                                    <input type="text" class="form-control" id="studentId" name="student_id" required>
-                                </div>
+                            <div class="col-md-4">
+    <label for="studentId">Student ID</label>
+    <span id="bgu-prefix">BGU</span>
+
+    <input type="text" class="form-control" id="studentId" name="student_id" aria-describedby="bgu-prefix" 
+    pattern="^[0-9]+$" placeholder="123456" required>
+    <small class="form-text text-muted">Student ID must start with "BGU" followed by numbers.</small>
+</div>
+
                                 <div class="col-md-4">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" id="username" name="username" required>
@@ -146,7 +151,7 @@ include("../include/connection.php");
                                 </div>
                         <div class="form-row">
                         <div class="col-md-4">
-                            <label for="gender">Gender</label>
+                            <label for="gender">Sex</label>
                             <select class="form-control" id="gender" name="gender" required>
                             <option value="" disabled selected>Select a gender</option>
                                 <option value="Male">Male</option>
@@ -166,14 +171,16 @@ include("../include/connection.php");
                         <div class="form-group">
                            <h5 style="text-align: center;">Contact Information</h5>
                             <div class="form-row">
-                                <div class="col-md-4">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="number" class="form-control" id="phone" name="phone" required>
-                            </div>
+                           <div class="col-md-4">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+</div>
+<div class="col-md-4">
+    <label for="phone">Phone Number</label>
+    <input type="text" class="form-control" id="phone" name="phone" pattern="^[0-9]{11}$" maxlength="11" required>
+    <small class="form-text text-muted">Phone number must be 11 digits.</small>
+</div>
+
                             </div>
                             </div>
                             <div class="form-group">
@@ -274,6 +281,20 @@ include("../include/connection.php");
     <script src="address_js/dropdown.js"></script>
 
     <script>
+
+document.getElementById("phone").addEventListener("input", function (e) {
+        // Remove any non-numeric characters
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    document.getElementById("studentId").addEventListener("focus", function () {
+        // Check if the input does not already start with "BGU"
+        if (!this.value.startsWith("BGU")) {
+            this.value = "BGU-";
+        }
+    });
+
+
                   function updateAddressinfo() {
     var provinceId = document.getElementById('province').value;
 
