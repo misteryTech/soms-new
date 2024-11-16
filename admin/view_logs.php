@@ -4,6 +4,40 @@ session_start();
 include("../include/connection.php");
 
 
+if (isset($_GET['id'])) {
+    $organization_id = mysqli_real_escape_string($connection, $_GET['id']);
+
+    // Fetch organization information
+    $orgQuery = "SELECT * FROM organizations WHERE id = '$organization_id'";
+    $orgResult = mysqli_query($connection, $orgQuery);
+    $organization = mysqli_fetch_assoc($orgResult);
+
+    // Fetch registered students for the organization ordered by role
+    $query = "
+        SELECT students.*, officers.position
+        FROM students
+        INNER JOIN officers ON students.id = officers.student_name
+        WHERE officers.organization_name = '$organization_id'
+        ORDER BY
+            CASE
+                WHEN officers.position = 'President' THEN 1
+                WHEN officers.position = 'Vice President' THEN 2
+                WHEN officers.position = 'Secretary' THEN 3
+                WHEN officers.position = 'Treasurer' THEN 4
+                ELSE 5
+            END
+    ";
+    $result = mysqli_query($connection, $query);
+
+    // Fetch all events associated with the organization
+    $eventsQuery = "SELECT id, title, description, date, image_path FROM event_schedule WHERE org_id = '$organization_id'";
+    $eventsResult = mysqli_query($connection, $eventsQuery);
+} else {
+    $_SESSION['error'] = "Invalid request.";
+    header("Location: admin_page.php");
+    exit();
+}
+
 
 
 ?>
@@ -33,7 +67,7 @@ include("../include/connection.php");
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Student Information Data</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Documents Activity Logss</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

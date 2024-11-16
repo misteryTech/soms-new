@@ -78,6 +78,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (mysqli_query($connection, $query)) {
             $_SESSION['success'] = "Organization registered successfully!";
+
+            // Get the last inserted document ID
+            $document_id = mysqli_insert_id($connection);
+
+            // Insert into document_log_tbl
+            $log_query = "INSERT INTO document_log_tbl (document_id) VALUES ('$document_id')";
+            if (!mysqli_query($connection, $log_query)) {
+                $_SESSION['error'] = "Error logging document: " . mysqli_error($connection);
+            }
+
         } else {
             $_SESSION['error'] = "Error: " . mysqli_error($connection);
         }

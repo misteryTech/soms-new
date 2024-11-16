@@ -94,6 +94,19 @@ if (isset($_GET['id'])) {
                                         <?php endif; ?>
                                     </td>
                                 </tr>
+
+                                <tr>
+                                    <th>Documents Logs</th>
+                                    <td>
+                                        <?php if (!empty($organization['id'])): ?>
+                                            <a href="view_logs.php?id=<?php echo $organization['id']; ?>">View Logs</a>
+                                        <?php else: ?>
+                                            <p>No Logs.</p>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+
+
                             </table>
 
                             <hr>
