@@ -29,10 +29,10 @@ include('../include/connection.php'); // Include the database connection here
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo '
-                                <div class="col-md-10 mb-4">
-                                    <div class="card border-left-primary shadow h-100 card-custom">
+                                <div class="col-md-4 mb-4">
+                                    <div class="card border-left-primary shadow h-100">
                                         <div class="card-body text-center">
-                                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-5">
+                                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-3">
                                                 <a href="view_organization.php?department_id=' . $row['id'] . '" class="text-decoration-none text-primary">
                                                     ' . htmlspecialchars($row['department_name']) . '
                                                 </a>
@@ -40,14 +40,15 @@ include('../include/connection.php'); // Include the database connection here
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-100"></div>';
+                                ';
                             }
                         } else {
-                            echo '<div class="col-md-10 mb-4 text-center">No departments found.</div>';
+                            echo '<div class="col-md-12 mb-4 text-center">No departments found.</div>';
                         }
                         ?>
                     </div>
 
+                    <!-- Optional Additional Row for content -->
                     <div class="row justify-content-center mt-4">
                         <div class="col-lg-6 mb-4"></div>
                         <div class="col-lg-6 mb-4"></div>

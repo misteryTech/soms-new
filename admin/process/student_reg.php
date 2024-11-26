@@ -3,6 +3,7 @@ session_start();
 include("../../include/connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $preffix = mysqli_real_escape_string($connection, $_POST['preffix']);
     $student_id = mysqli_real_escape_string($connection, $_POST['student_id']);
     $username = mysqli_real_escape_string($connection, $_POST['username']); 
     $password = mysqli_real_escape_string($connection, $_POST['password']);
@@ -25,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = "Students";
 
     $query = "INSERT INTO students (
-        student_id, username, password, lastname, firstname, middlename, course, year, section, gender, dob, age, email, phone, street, barangay, municipality, province, role, region
+        student_id, username, password, lastname, firstname, middlename, course, year, section, gender, dob, age, email, phone, street, barangay, municipality, province, role, region, start_id
     ) VALUES (
-        '$student_id', '$username', '$password', '$lastname', '$firstname', '$middlename', '$course', '$year', '$section', '$gender', '$dob', '$age', '$email', '$phone', '$street', '$barangay', '$municipality', '$province', '$role', '$region'
+        '$student_id', '$username', '$password', '$lastname', '$firstname', '$middlename', '$course', '$year', '$section', '$gender', '$dob', '$age', '$email', '$phone', '$street', '$barangay', '$municipality', '$province', '$role', '$region', '$preffix'
     )";
 
     if (mysqli_query($connection, $query)) {

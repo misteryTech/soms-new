@@ -4,6 +4,14 @@ session_start();
 include("../include/connection.php");
 ?>
 
+
+<style>
+    h2{
+        font-size: 35px;
+        color: black;
+}
+</style>
+
 <body id="page-top" onload="generatePassword()">
 
 
@@ -42,7 +50,7 @@ include("../include/connection.php");
                     <?php endif; ?>
 
 
-                    <h2 style="text-align: center;">Student Registration Form</h2>
+                  <h2 style="text-align: center;">Student Registration Form</h2>
 
                     <button type="button" class="btn btn-gray" onclick="closeForm()" style="position: absolute; top: 100px; left: 250px;">
         <i class="fas fa-times"></i>
@@ -52,16 +60,27 @@ include("../include/connection.php");
                         <div class="form-group">
                            <h5 style="text-align: center;">Account</h5>
                             <div class="form-row">
+
+                            <div class="col-md-1">
+                                <label for="studentId">Preffix</label>
+                 
+                                                
+                                <input type="text" class="form-control" id="preffix" name="preffix" aria-describedby="bgu-prefix" 
+                                pattern="^[0-9]+$" placeholder="19" required>
+                
+                            </div>
+
+                            
                             <div class="col-md-4">
-    <label for="studentId">Student ID</label>
-    <span id="bgu-prefix">BGU</span>
+                                <label for="studentId">Student ID</label>
+                                <span id="bgu-prefix">BGU</span>
 
-    <input type="text" class="form-control" id="studentId" name="student_id" aria-describedby="bgu-prefix" 
-    pattern="^[0-9]+$" placeholder="123456" required>
-    <small class="form-text text-muted">Student ID must start with "BGU" followed by numbers.</small>
-</div>
+                                <input type="text" class="form-control" id="studentId" name="student_id" aria-describedby="bgu-prefix" 
+                              placeholder="123456" required>
+                                <small class="form-text text-muted">Student ID must start with "BGU" followed by numbers.</small>
+                            </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" id="username" name="username" required>
                                 </div>
@@ -72,7 +91,7 @@ include("../include/connection.php");
                             </div>
                                 </div>
                                 <div class="form-group">
-                                <h5 style="text-align: center;">Personal Information</h5>
+                                <h2 style="text-align: center;">Personal Information</h2>
                                 <div class="form-row">
                         
                             <div class="col-md-4">
@@ -118,13 +137,25 @@ include("../include/connection.php");
 
 
                                 <div class="col-md-3">
+
+                                <?php
+
+$mysql_query = "SELECT * FROM  year  GROUP BY  year";
+$result = mysqli_query($connection, $mysql_query);
+?>
+
+
                                     <label for="year">Year</label>
                                     <select class="form-control" id="year" name="year" required>
                                     <option value="" disabled selected>Select a year</option>
-                                    <option value="I">I</option>
-                                    <option value="II">II</option>
-                                    <option value="III">III</option>
-                                    <option value="IV">IV</option>
+                                    <?php
+
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $year = $row['year'];
+                                            echo "<option value='$year'>$year</option>";
+                                        }
+                                    ?>
+                                </select>
                                     </select>
                                 </div>
 
@@ -138,12 +169,25 @@ include("../include/connection.php");
                                 ?>
                                 <div class="col-md-3">
                                     <label for="section">Section</label>
-                                    <select class="form-control" id="section" name="section" required>
+
+                                    <?php
+
+$mysql_query = "SELECT * FROM  section  GROUP BY  section";
+$result = mysqli_query($connection, $mysql_query);
+?>
+
+                                   <select class="form-control" id="section" name="section" required>
                                     <option value="" disabled selected>Select a section</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    </select>
+                                    <?php
+
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $section = $row['section'];
+                                            echo "<option value='$section'>$section</option>";
+                                        }
+                                    ?>
+                                </select>
+
+
                                 </div>
 
 
@@ -158,7 +202,7 @@ include("../include/connection.php");
                                 <option value="Female">Female</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label for="dob">Birthdate</label>
                             <input type="date" class="form-control" id="dob" name="dob" onchange="calculateAge()"  required>
                         </div>
@@ -171,9 +215,11 @@ include("../include/connection.php");
                         <div class="form-group">
                            <h5 style="text-align: center;">Contact Information</h5>
                             <div class="form-row">
-                           <div class="col-md-4">
+                           <div class="col-md-6">
     <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" required>
+    <input type="email" class="form-control" id="email" name="email" onkeyup="checkEmail()" required >
+    <span id="checkavailability" style="display: block; margin-top: 5px;"></span>
+
 </div>
 <div class="col-md-4">
     <label for="phone">Phone Number</label>
@@ -184,7 +230,7 @@ include("../include/connection.php");
                             </div>
                             </div>
                             <div class="form-group">
-                            <h5 style="text-align: center;">Address</h5>
+                            <h2 style="text-align: center;">Address</h2>
                         <div class="form-row">
                         
 
@@ -282,6 +328,10 @@ include("../include/connection.php");
 
     <script>
 
+
+
+
+
 document.getElementById("phone").addEventListener("input", function (e) {
         // Remove any non-numeric characters
         this.value = this.value.replace(/[^0-9]/g, '');
@@ -290,7 +340,7 @@ document.getElementById("phone").addEventListener("input", function (e) {
     document.getElementById("studentId").addEventListener("focus", function () {
         // Check if the input does not already start with "BGU"
         if (!this.value.startsWith("BGU")) {
-            this.value = "BGU-";
+            this.value = "-BGU-";
         }
     });
 
@@ -346,14 +396,6 @@ function fetchBarangays(municipality) {
         }
 
 
-
-
-
-
-
-
-
-
  function fetchDepartments(course) {
         $.ajax({
             url: 'ajax/fetch_departments.php',
@@ -365,4 +407,42 @@ function fetchBarangays(municipality) {
             }
         });
     }
+
+
+    function checkEmail() {
+        var email = document.getElementById('email').value;
+        
+        // Ensure the organization name is not empty before making the AJAX request
+        if (email.trim() === "") {
+            document.getElementById('checkavailability').textContent = 'Please enter an email.';
+            document.querySelector('button[type="submit"]').disabled = true;
+            return;
+        }
+
+        $.ajax({
+            url: 'ajax/check_email.php', // Ensure the URL is correct
+            type: 'POST',
+            data: { email: email },
+            success: function(response) {
+                var availabilitySpan = document.getElementById('checkavailability');
+
+                if (response === 'exists') {
+                    availabilitySpan.textContent = 'This email name already exists.';
+                    availabilitySpan.style.color = 'red';
+                    document.querySelector('button[type="submit"]').disabled = true; // Disable submit button
+                } else if (response === 'available') {
+                    availabilitySpan.textContent = 'This email name is available.';
+                    availabilitySpan.style.color = 'green';
+                    document.querySelector('button[type="submit"]').disabled = false; // Enable submit button
+                } else {
+                    console.error('Unexpected response: ', response);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX error: ' + error);
+            }
+        });
+    }
+
+
     </script>

@@ -1,6 +1,6 @@
 <?php 
 include('user_header.php');
-include('db_connection.php'); // Make sure you include your database connection here
+include("../include/connection.php");
 ?>
 
 <body id="page-top">
@@ -24,7 +24,7 @@ include('db_connection.php'); // Make sure you include your database connection 
                         <?php
                         // Fetch departments from the database
                         $query = "SELECT department_name FROM department";
-                        $result = $conn->query($query);
+                        $result = $connection->query($query);
 
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {

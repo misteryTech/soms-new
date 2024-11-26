@@ -36,6 +36,8 @@
         <div class="bg-white py-2 collapse-inner rounded">
           
             <a class="collapse-item" href="course_registration.php">Course</a>
+            <a class="collapse-item" href="section_registration.php">Section</a>
+            <a class="collapse-item" href="year_registration.php">Year</a>
         </div>
 
         </div>

@@ -50,72 +50,80 @@ $officersCount = mysqli_fetch_assoc($officersResult)['total_officers'];
 
                         <!-- Students Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Students</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $studentsCount; ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                            <a href="students_data.php" class="card-link"> <!-- Wrap card in an anchor tag -->
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Students</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $studentsCount; ?></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <!-- Organizations Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Organizations</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $organizationsCount; ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-chart-area fa-2x text-gray-300"></i>
+                            <a href="organizations_data.php" class="card-link"> <!-- Wrap card in an anchor tag -->
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Organizations</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $organizationsCount; ?></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-chart-area fa-2x text-gray-300"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <!-- Events Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Events</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $eventsCount; ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <a href="event_data.php" class="card-link"> <!-- Wrap card in an anchor tag -->
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Events</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $eventsCount; ?></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <!-- Officers Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Officers</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $officersCount; ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-id-card fa-2x text-gray-300"></i>
+                            <a href="officers_data.php" class="card-link"> <!-- Wrap card in an anchor tag -->
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Officers</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $officersCount; ?></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-id-card fa-2x text-gray-300"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                     </div>
